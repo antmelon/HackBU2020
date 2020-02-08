@@ -8,7 +8,7 @@ engine = create_engine('sqlite:///{file_path}'.format(file_path=file_path), echo
 
 Base = declarative_base()
 
-association_table_wanted = Table('wanted', Base.metadata,
+textbook_user_list = Table('books and users', Base.metadata,
     Column('left_id', Integer, ForeignKey('users.id')),
     Column('right_id', Integer, ForeignKey('textbooks.id'))
 )
@@ -20,7 +20,7 @@ class User(Base):
     name = Column(String)
     fullname = Column(String)
     nickname = Column(String)
-    textbooks_have = relationship("Textbook", secondary=association_table_wanted, back_populates="users")
+    textbooks_have = relationship("Textbook", secondary=textbook_user_list, back_populates="users")
     textbooks_wanted = relationship("Textbook", back_populates="wanted_textbooks")
     def __init__(self, uname):
         pass
@@ -32,4 +32,4 @@ class Textbook(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String)
     author = Column(String)
-    owners = relationship("User", secondary=association_table_wanted, back_populates="textbooks")
+    owners = relationship("User", secondary=textbook_user_list, back_populates="textbooks")
