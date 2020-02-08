@@ -9,6 +9,8 @@ verify_ssl = true
 numpy = "*"
 flask = "*"
 sqlalchemy = "*"
+flask-oidc = "*"
+okta = "*"
 
 [requires]
 python_version = "3.7"
