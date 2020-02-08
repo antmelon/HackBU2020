@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
+from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Table
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 import os
@@ -7,6 +7,12 @@ file_path = os.path.abspath(os.getcwd())+"/database.db"
 engine = create_engine('sqlite:///{file_path}'.format(file_path=file_path), echo=True)
 
 Base = declarative_base()
+
+association_table_wanted = Table('wanted', Base.metadata,
+    Column('left_id', Integer, ForeignKey('users.id')),
+    Column('right_id', Integer, ForeignKey('textbooks.id'))
+)
+
 class User(Base):
     __tablename__ = 'users'
 
@@ -14,7 +20,8 @@ class User(Base):
     name = Column(String)
     fullname = Column(String)
     nickname = Column(String)
-
+    textbooks_have = relationship("Textbook", secondary=association_table_wanted, back_populates="users")
+    textbooks_wanted = relationship("Textbook", back_populates="wanted_textbooks")
     def __init__(self, uname):
         pass
 
@@ -25,4 +32,4 @@ class Textbook(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String)
     author = Column(String)
-    owner = relationship("User", back_populates="owned_textbooks")
+    owners = relationship("User", secondary=association_table_wanted, back_populates="textbooks")
