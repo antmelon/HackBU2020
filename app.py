@@ -3,7 +3,7 @@
 #Login token 00idk2KSs3hVXhksW2OBwKsaOVzJH6qVUF5OVPp8SL
 
 from flask import Flask, render_template, g, redirect, url_for
-from forms import RegistrationForm, LoginForm
+from .forms import RegistrationForm, LoginForm
 
 app = Flask(__name__)
 
