@@ -1,3 +1,3 @@
 import numpy as np
 
-print("Test")
+print("Testing arch linux")
