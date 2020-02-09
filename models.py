@@ -20,7 +20,7 @@ class User(Base):
     name = Column(String)
     fullname = Column(String)
     nickname = Column(String)
-    textbooks_have = relationship("Textbook", secondary=textbook_user_list, back_populates="users")
+    #textbooks_have = relationship("Textbook", secondary=textbook_user_list, back_populates="users")
     #textbooks_wanted = relationship("Textbook", back_populates="wanted_textbooks")
 
 class Textbook(Base):
