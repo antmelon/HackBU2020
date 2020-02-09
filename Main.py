@@ -21,8 +21,8 @@ def createUser(User):
         print("wrote to json")
         f.close()
 
-def createTextbook(User):
-    book[Textbook.getName()] = {
+def createTextbook(Textbook):
+    book[Textbook.getTitle()] = {
         'title': Textbook.getTitle(),
         'author': Textbook.getAuthor(),
         'userArr': Textbook.getUserArr()
@@ -31,4 +31,5 @@ def createTextbook(User):
     jsondata = json.dumps(book)
     with open("{file_path}/books.json".format(file_path=file_path), "w") as f:
         f.write(jsondata)
+
         f.close()

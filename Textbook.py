@@ -2,7 +2,7 @@ class Textbook:
     def __init__(self, title, author, UserArr):
         self.title = title
         self.author = author
-        self.UserArr = UserArr
+        self.UserArr = [UserArr]
 
 
 
@@ -15,4 +15,4 @@ class Textbook:
 
 
     def getUserArr(self):
-        self.getUserArr()
+        return self.UserArr
