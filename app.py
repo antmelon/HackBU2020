@@ -35,7 +35,8 @@ def addBook():
         f.close()
         for (k, v) in data.items():
             if form.book_title.data == k:
-                v["userArr"].append(session.get('user', None))
+                print("textbook in file")
+                v["userArr"].append((session.get('user', None)))
                 file_has_book = True
         f.close()
         if not file_has_book:
@@ -54,8 +55,8 @@ def register():
             form.username.data))
         new_user = User(form.username.data, form.password.data, form.full_name.data, form.email.data)
         createUser(new_user)
-        who_is_user = form.username.data
-        return redirect('/', user=who_is_user)
+        session['user'] = form.username.data
+        return redirect('/')
     return render_template('register.html', title = 'Register', form = form)
 
 @app.route('/login', methods=['GET','POST'])

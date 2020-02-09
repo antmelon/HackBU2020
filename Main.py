@@ -15,11 +15,13 @@ def createUser(User):
         #'Location': User.getLocation(),
         'TextBooks Have': User.getTextBooksHave()
     }
-    jsondata = json.dumps(data)
-    with open("{file_path}/users.json".format(file_path=file_path), "w") as f:
-        f.write(jsondata)
-        print("wrote to json")
-        f.close()
+    with open("{file_path}/users.json".format(file_path=file_path)) as f:
+        write_data = json.load(f)
+
+    write_data.update(data)
+
+    with open("{file_path}/users.json".format(file_path=file_path), 'w') as f:
+        json.dump(write_data, f)
 
 def createTextbook(Textbook):
     book[Textbook.getTitle()] = {
@@ -28,8 +30,10 @@ def createTextbook(Textbook):
         'userArr': Textbook.getUserArr()
     }
     #cant add same textbook twice
-    jsondata = json.dumps(book)
-    with open("{file_path}/books.json".format(file_path=file_path), "w") as f:
-        f.write(jsondata)
+    with open("{file_path}/books.json".format(file_path=file_path)) as f:
+        write_data = json.load(f)
 
-        f.close()
+    write_data.update(data)
+
+    with open("{file_path}/books.json".format(file_path=file_path), 'w') as f:
+        json.dump(write_data, f)
