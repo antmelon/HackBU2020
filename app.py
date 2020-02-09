@@ -34,7 +34,7 @@ def addBook():
     form = HasBookForm()
     if form.validate_on_submit():
         if form.book_title.data in book.textbooks:
-            book.textbooks[form.book_title.data]['userArr'].append((session.get('user', None)))
+            book.textbooks[form.book_title.data]['userArr'][-1]=((session.get('user', None)))
         else:
             addToBook(book, Textbook(form.book_title.data, form.author.data, session.get('user', None)))
             print("registered book")
