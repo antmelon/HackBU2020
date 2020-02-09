@@ -21,10 +21,7 @@ class User(Base):
     fullname = Column(String)
     nickname = Column(String)
     textbooks_have = relationship("Textbook", secondary=textbook_user_list, back_populates="users")
-    textbooks_wanted = relationship("Textbook", back_populates="wanted_textbooks")
-    def __init__(self, uname):
-        pass
-
+    #textbooks_wanted = relationship("Textbook", back_populates="wanted_textbooks")
 
 class Textbook(Base):
     __tablename__ = 'textbooks'
@@ -32,4 +29,4 @@ class Textbook(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String)
     author = Column(String)
-    owners = relationship("User", secondary=textbook_user_list, back_populates="textbooks")
+    #owners = relationship("User", secondary=textbook_user_list, back_populates="textbooks")
