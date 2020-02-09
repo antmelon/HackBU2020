@@ -4,7 +4,9 @@
 
 from flask import Flask, render_template, g, redirect, url_for, flash
 from .forms import RegistrationForm, LoginForm
+import os
 
+file_path = os.path.abspath(os.getcwd())
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'e14a09eacbba9066f9dcae93dcabccda'
