@@ -1,10 +1,10 @@
-class Textbook:
+import json
+
+class Textbook(object):
     def __init__(self, title, author, UserArr):
         self.title = title
         self.author = author
         self.UserArr = [UserArr]
-
-
 
     def getTitle(self):
         return self.title

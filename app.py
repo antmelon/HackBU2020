@@ -6,7 +6,10 @@ from flask import Flask, render_template, g, redirect, url_for, flash, session
 from .forms import RegistrationForm, LoginForm, HasBookForm
 import os, json
 from .user import User, Textbook
-from .main import createUser, createTextbook
+from .main import createUser, addToBook, write_book, load_book, Book
+import sys
+
+has_loaded = False
 
 file_path = os.path.abspath(os.getcwd())
 app = Flask(__name__)
@@ -27,22 +30,15 @@ def getTextbooks():
 
 @app.route("/addbook", methods=['GET', 'POST'])
 def addBook():
+    book = load_book()
     form = HasBookForm()
     if form.validate_on_submit():
-        f= open("{file_path}/books.json".format(file_path=file_path))
-        file_has_book = False
-        data = json.load(f)
-        f.close()
-        for (k, v) in data.items():
-            if form.book_title.data == k:
-                print("textbook in file")
-                v["userArr"].append((session.get('user', None)))
-                file_has_book = True
-        f.close()
-        if not file_has_book:
-            new_book = Textbook(form.book_title.data, form.author.data, session.get('user'))
-            createTextbook(new_book)
+        if form.book_title.data in book.textbooks:
+            book.textbooks[form.book_title.data]['userArr'].append((session.get('user', None)))
+        else:
+            addToBook(book, Textbook(form.book_title.data, form.author.data, session.get('user', None)))
             print("registered book")
+    write_book(book)
     return render_template('registerBook.html', title = 'Register Book', form= form)
 
 
