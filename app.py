@@ -33,9 +33,14 @@ def addBook():
     book = load_book()
     form = HasBookForm()
     if form.validate_on_submit():
-        if form.book_title.data in book.textbooks:
-            book.textbooks[form.book_title.data]['userArr'][-1]=((session.get('user', None)))
-        else:
+        print(book.textbooks)
+        json_has_book = False
+        for k,v in book.textbooks:
+            if form.book_title.data in book.textbooks:
+                print("changing")
+                book.textbooks[form.book_title.data]['userArr'][-1]=((session.get('user', None)))
+                json_has_book = True
+        if not json_has_book:
             addToBook(book, Textbook(form.book_title.data, form.author.data, session.get('user', None)))
             print("registered book")
     write_book(book)

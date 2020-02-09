@@ -30,8 +30,12 @@ def load_book():
     return book
 
 def write_book(book):
+    with open("{file_path}/books.json".format(file_path=file_path)) as f:
+        write_data = json.load(f)
+
+    write_data.update(book.textbooks)
     with open("{file_path}/books.json".format(file_path=file_path), 'w') as f:
-        json.dump(book, f, cls=BookSerializer, indent=4)
+        json.dump(write_data, f, cls=BookSerializer, indent=4)
 
 
 def createUser(User):
