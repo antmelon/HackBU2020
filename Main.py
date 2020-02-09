@@ -1,5 +1,6 @@
 import json
-import User
+from .user import User
+from .textbook import Textbook
 import os
 data = {}
 book = {}
@@ -11,13 +12,15 @@ def createUser(User):
         'Full Name': User.getFullName(),
         'email': User.getEmail(),
         'TextBooks Wanted': User.getTextBooksWanted(),
-        'Location': User.getLocation(),
+        #'Location': User.getLocation(),
         'TextBooks Have': User.getTextBooksHave()
     }
     jsondata = json.dumps(data)
     with open("{file_path}/users.json".format(file_path=file_path), "w") as f:
         f.write(jsondata)
+        print("wrote to json")
         f.close()
+
 def createTextbook(User):
     book[Textbook.getName()] = {
         'title': Textbook.getTitle(),

@@ -1,14 +1,14 @@
-from .Textbook import TextBook
+from .textbook import Textbook
 class User:
 
-    def __init__(self, name, password, fullname, email,location, textbooksWanted=[],textbooksHave = []):
+    def __init__(self, name, password, fullname, email, textbooksWanted=[],textbooksHave = []):
         self.name = name;
         self.password = password
         self.fullname = fullname
         self.email = email
         self.textbooksWanted = textbooksWanted
         self.textbooksHave = textbooksHave
-        self.location = location
+        #self.location = location
 
     def addTextbooksWanted(book):
         if len(self.textbooksWanted) == 0:
@@ -33,8 +33,8 @@ class User:
     def getEmail(self):
         return self.email
 
-    def getLocation(self):
-        return self.location
+    '''def getLocation(self):
+        return self.location'''
 
     def getTextBooksWanted(self):
         return self.textbooksWanted

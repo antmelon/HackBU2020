@@ -1,4 +1,4 @@
-class TextBook:
+class Textbook:
     def __init__(self, title, author, UserArr):
         self.title = title
         self.author = author
