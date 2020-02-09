@@ -7,7 +7,7 @@ from .forms import RegistrationForm, LoginForm
 
 app = Flask(__name__)
 
-app.config['SECRET KEY'] = 'e14a09eacbba9066f9dcae93dcabccda'
+app.config['SECRET_KEY'] = 'e14a09eacbba9066f9dcae93dcabccda'
 
 @app.route("/")
 def index():
@@ -16,7 +16,7 @@ def index():
 
 @app.route("/textbooks")
 def getTextbooks():
-    return "Future home of textbooks"
+    return render_template("textbooks.html")
 
 @app.route("/register")
 def register():

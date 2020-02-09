@@ -14,7 +14,8 @@
         <a class="p-2 text-dark" href="/" title="Home">Home</a>
         <a class="p-2 text-dark" href="textbooks" Title="Textbooks">Textbooks</a>
         {% if not g.user %}
-          <a class="p-2 text-dark" href="/login">Log In / Register</a>
+          <a class="p-2 text-dark" href="/login">Log In</a>
+          <a class="p-2 text-dark" href="/register">Register</a>
         {% else %}
           <a class="p-2 text-dark" href="/dashboard">Dashboard</a>
           <a class="p-2 text-dark" href="/logout">Logout</a>
