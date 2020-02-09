@@ -3,12 +3,27 @@
         "title": "1",
         "author": "1",
         "UserArr": [
-            "3"
+            "3",
+            "1"
         ]
     },
     "2": {
         "title": "2",
         "author": "13",
+        "UserArr": [
+            "1"
+        ]
+    },
+    "test": {
+        "title": "test",
+        "author": "guy",
+        "UserArr": [
+            "2"
+        ]
+    },
+    "poop": {
+        "title": "poop",
+        "author": "I fucking hate this",
         "UserArr": [
             "1"
         ]

@@ -6,7 +6,7 @@ from flask import Flask, render_template, g, redirect, url_for, flash, session
 from .forms import RegistrationForm, LoginForm, HasBookForm
 import os, json
 from .user import User, Textbook
-from .main import createUser, addToBook, write_book, load_book, Book
+from .main import createUser, addToBook, write_book, load_book, Book, BookSerializer
 import sys
 
 has_loaded = False
@@ -35,10 +35,16 @@ def addBook():
     if form.validate_on_submit():
         print(book.textbooks)
         json_has_book = False
-        for k,v in book.textbooks:
-            if form.book_title.data in book.textbooks:
+        with open("{file_path}/books.json".format(file_path=file_path)) as f:
+            data=json.load(f)
+        for k,v in data.items():
+            if form.book_title.data == k:
                 print("changing")
-                book.textbooks[form.book_title.data]['userArr'][-1]=((session.get('user', None)))
+                for item in v:
+                    print(item)
+                v['UserArr'].append(session.get('user', None))
+                with open("{file_path}/books.json".format(file_path=file_path), 'w') as f:
+                    json.dump(data, f, cls=BookSerializer, indent=4)
                 json_has_book = True
         if not json_has_book:
             addToBook(book, Textbook(form.book_title.data, form.author.data, session.get('user', None)))
